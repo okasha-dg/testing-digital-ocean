@@ -25,21 +25,19 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Pull the current latest image
-        run: docker pull oukaasha/flask-app-test:latest || true
+        run: docker pull oukaasha/flask-app-test:${{ github.ref_name }}_latest || true
   
       - name: Tag the current latest image as old
-        run: |
-          docker tag oukaasha/flask-app-test:latest oukaasha/flask-app-test:${{ github.ref_name }} || true
-          docker tag oukaasha/flask-app-test:latest oukaasha/flask-app-test:old || true
+        run: docker tag oukaasha/flask-app-test:${{ github.ref_name }}_latest oukaasha/flask-app-test:${{ github.ref_name }}_old || true
   
       - name: Push the old image
-        run: docker push oukaasha/flask-app-test:old || true
+        run: docker push oukaasha/flask-app-test:${{ github.ref_name }}_old || true
 
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: oukaasha/flask-app-test:${{ github.ref_name }},oukaasha/flask-app-test:latest
+          tags: oukaasha/flask-app-test:${{ github.ref_name }}_latest
           context: .
 
     # - name: Deploy to Digital Ocean
