@@ -42,6 +42,6 @@ jobs:
 
     # - name: Deploy to Digital Ocean
     #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/testing'
-    #   run: ssh -o StrictHostKeyChecking=no root@your_digital_ocean_server_ip "docker pull oukaasha/flask-app-test:${{ github.ref_name }} && docker run -d --name flask-app-test -p 80:80 oukaasha/flask-app-test:${{ github.ref_name }}"
+    #   run: ssh -o StrictHostKeyChecking=no root@your_digital_ocean_server_ip "docker pull oukaasha/flask-app-test:${{ github.ref_name }}_latest && docker run -d --name flask-app-test -p 80:80 oukaasha/flask-app-test:${{ github.ref_name }}_latest"
     #   env:
     #     DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
