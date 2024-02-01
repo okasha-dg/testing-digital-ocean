@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: oukaasha/flask-app-test:${{ github.ref_name }},oukaasha/flask-app-test::latest
+          tags: oukaasha/flask-app-test:${{ github.ref_name }},oukaasha/flask-app-test:latest
           context: .
 
     # - name: Deploy to Digital Ocean
